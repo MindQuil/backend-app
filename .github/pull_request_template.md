@@ -1,8 +1,8 @@
-# Description
+## Description
 
 [Describe the changes you've made and why they are necessary.]
 
-# Type of change
+## Type of change
 What type of changes did you mae with your code. Put an `x` in the boxes that apply.
 
 - [ ] Bug fix
@@ -11,8 +11,8 @@ What type of changes did you mae with your code. Put an `x` in the boxes that ap
 - [ ] Code refactor
 - [ ] Other (please describe): ______
 
-# Checklist
-Put an x in the boxes that apply.
+## Checklist
+Put an `x` in the boxes that apply.
 
 - [ ] I have read the contribution guidelines and my code follows them.
 - [ ] My code has been tested and works as intended.
@@ -23,15 +23,15 @@ Put an x in the boxes that apply.
 - [ ] I have checked that my changes are backwards-compatible with the existing codebase.
 - [ ] I have added comments and/or documentation, as necessary, to explain any complex logic or functionality.
 
-# Related Issues
+## Related Issues
 
 [If your changes are related to an existing issue, link to it here.]
 
-# Screenshots
+## Screenshots
 
 [If applicable, include screenshots to demonstrate the changes.]
 
-# Additional context
+## Additional context
 
 [Add any additional context or information that may be useful for the reviewer.]
 
