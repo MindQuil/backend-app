@@ -1,17 +1,34 @@
-const dotenv = require('dotenv').config();
+require('dotenv').config();
+
 const express = require('express');
+const mongoose = require('mongoose');
+const userRoutes = require('./routes/UserRouter');
 
 const PORT = process.env.PORT;
 
-// create express app
 const app = express();
+app.use(express.json());
 
-// routes
-app.get('/', (req, res) => {
-    res.json({mssg: 'Welcome to MindQuil'})
+app.use((req, res, next) => {
+    console.log(req.path, req.method);
+    next();
 });
 
-// listens for requests
-app.listen(PORT, () => {
-    console.log(`Server listening on port, ${PORT}`);
-});
+// middlewares
+app.use('/users', userRoutes);
+
+// connect to db
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => {
+    // listens for requests
+    app.listen(PORT, () => {
+        console.log('Connected to MongoDB');
+        console.log(`Server listening on port, ${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
+
+module.exports = app;
