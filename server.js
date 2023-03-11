@@ -1,15 +1,17 @@
+const dotenv = require('dotenv').config();
 const express = require('express');
+
+const PORT = process.env.PORT;
 
 // create express app
 const app = express();
 
-const PORT = process.env.PORT || 5000;
-
+// routes
 app.get('/', (req, res) => {
-    res.send('Welcome to MindQuil');
+    res.json({mssg: 'Welcome to MindQuil'})
 });
 
 // listens for requests
 app.listen(PORT, () => {
-    console.log(`Server listening on PORT ${PORT}`);
+    console.log(`Server listening on port, ${PORT}`);
 });
