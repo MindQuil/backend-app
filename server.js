@@ -1,11 +1,11 @@
 require('dotenv').config();
 
 const express = require('express');
-const connectDB = require('./utils/db')
-const { 
+const connectDB = require('./utils/db');
+const {
   userRoutes,
   therapistRoutes,
-} = require('./routes/index')
+} = require('./routes/index');
 
 const PORT = process.env.PORT || 5000;
 
