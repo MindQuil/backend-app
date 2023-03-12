@@ -11,10 +11,10 @@ const createUser = (req, res) => {
   });
 
   newUser.save()
-    .then(user => {
+    .then((user) => {
       res.json(user);
     })
-    .catch(error => {
+    .catch((error) => {
       res.status(500).json({ error: error.message });
     });
 };
@@ -22,10 +22,10 @@ const createUser = (req, res) => {
 // Retrieve all users
 const getAllUsers = (req, res) => {
   User.find()
-    .then(users => {
+    .then((users) => {
       res.json(users);
     })
-    .catch(error => {
+    .catch((error) => {
       res.status(500).json({ error: error.message });
     });
 };
@@ -35,13 +35,13 @@ const getUserById = (req, res) => {
   const { id } = req.params;
 
   User.findById(id)
-    .then(user => {
+    .then((user) => {
       if (!user) {
         return res.status(404).json({ error: 'User not found' });
       }
-      res.json(user);
+      return res.json(user);
     })
-    .catch(error => {
+    .catch((error) => {
       res.status(500).json({ error: error.message });
     });
 };
@@ -49,16 +49,16 @@ const getUserById = (req, res) => {
 // Update a user by ID
 const updateUserById = (req, res) => {
   const { id } = req.params;
-  const { name, email, password, dateOfBirth, gender } = req.body;
+  const { name, email, password } = req.body;
 
   User.findByIdAndUpdate(id, { name, email, password }, { new: true })
-    .then(user => {
+    .then((user) => {
       if (!user) {
         return res.status(404).json({ error: 'User not found' });
       }
-      res.json(user);
+      return res.json(user);
     })
-    .catch(error => {
+    .catch((error) => {
       res.status(500).json({ error: error.message });
     });
 };
@@ -68,13 +68,13 @@ const deleteUserById = (req, res) => {
   const { id } = req.params;
 
   User.findByIdAndDelete(id)
-    .then(user => {
+    .then((user) => {
       if (!user) {
         return res.status(404).json({ error: 'User not found' });
       }
-      res.json(user);
+      return res.json(user);
     })
-    .catch(error => {
+    .catch((error) => {
       res.status(500).json({ error: error.message });
     });
 };
@@ -84,5 +84,5 @@ module.exports = {
   getAllUsers,
   getUserById,
   updateUserById,
-  deleteUserById
+  deleteUserById,
 };

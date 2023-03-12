@@ -4,33 +4,33 @@ const therapistSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
-    required: true
+    required: true,
   },
   licenseNumber: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
   specialties: {
     type: [String],
-    required: true
+    required: true,
   },
   yearsOfExperience: {
     type: Number,
-    required: true
+    required: true,
   },
   education: {
     type: String,
-    required: true
+    required: true,
   },
   about: {
     type: String,
-    required: true
+    required: true,
   },
   hourlyRate: {
     type: Number,
-    required: true
-  }
+    required: true,
+  },
 });
 
 const Therapist = mongoose.model('Therapist', therapistSchema);
