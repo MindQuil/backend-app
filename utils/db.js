@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 
-
 const connectDB = async () => {
   try {
     const URI = process.env.MONGO_URI;
@@ -10,6 +9,5 @@ const connectDB = async () => {
     console.error('Error connecting to MongoDB:', error.message);
   }
 };
-
 
 module.exports = connectDB;
