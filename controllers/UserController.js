@@ -1,22 +1,25 @@
 const User = require('../models/UserModel');
 
 // Creates a new user
-const createUser = (req, res) => {
-  const { name, email, password } = req.body;
+const createUser = async (req, res) => {
+  try {
+    const { name, email, password } = req.body;
+    const existingUser = await User.findOne({ email });
 
-  const newUser = new User({
-    name,
-    email,
-    password,
-  });
-
-  newUser.save()
-    .then((user) => {
-      res.json(user);
-    })
-    .catch((error) => {
-      res.status(500).json({ error: error.message });
+    if (existingUser) {
+      return res.status(400).json({ error: 'User with this email already exists' });
+    }
+    const newUser = new User({
+      name,
+      email,
+      password,
     });
+
+    await newUser.save();
+    return res.status(201).json({ mssg: 'User created succeafully' });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
 };
 
 // Retrieve all users

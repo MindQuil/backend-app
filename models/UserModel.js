@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-// const sha1 = require('sha1');
-// const bcrypt = require('bcrypt');
+const sha1 = require('sha1');
+const bcrypt = require('bcrypt');
 
 const { Schema } = mongoose;
 
@@ -31,26 +31,24 @@ const UserSchema = new Schema({
   },
 }, { timestamps: true });
 
-// Hash the password before saving the user
-// UserSchema.pre('save', async (next) => {
-//     const hashedPassword = sha1(this.password);
+UserSchema.pre('save', async function hashPassword(next) {
+  const hashedPassword = sha1(this.password);
 
-//     const salt = await bcrypt.genSalt(10);
-//     const passwordHash = await bcrypt.hash(hashedPassword, salt);
+  const salt = await bcrypt.genSalt(10);
+  const passwordHash = await bcrypt.hash(hashedPassword, salt);
 
-//     this.password = passwordHash;
-//     next();
-//   });
+  this.password = passwordHash;
+  next();
+});
 
-//   // Check if a given password matches the ...
-//   // user's password in the database
-// UserSchema.methods.isPasswordMatch = async (password) => {
-//     const hashedPassword = sha1(password);
-
-//     // Compare the hashed password with ...
-//     // the hashed password in the database using bcrypt
-//     return await bcrypt.compare(hashedPassword, this.password);
-// };
+UserSchema.methods.isPasswordMatch = async function hashPassword(password) {
+  try {
+    const hashedPassword = await bcrypt.compare(sha1(password), this.password);
+    return hashedPassword;
+  } catch (error) {
+    throw new Error('Error comparing passwords');
+  }
+};
 
 const User = mongoose.model('User', UserSchema);
 
