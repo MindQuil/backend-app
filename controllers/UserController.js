@@ -1,4 +1,5 @@
 const User = require('../models/UserModel');
+const hashPassword = require('../utils/hashPassword');
 
 // Creates a new user
 const createUser = async (req, res) => {
@@ -9,10 +10,12 @@ const createUser = async (req, res) => {
     if (existingUser) {
       return res.status(400).json({ error: 'User with this email already exists' });
     }
+
+    const passwordHash = await hashPassword(password);
     const newUser = new User({
       name,
       email,
-      password,
+      password: passwordHash,
     });
 
     await newUser.save();
