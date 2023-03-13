@@ -2,24 +2,24 @@ const express = require('express');
 
 const router = express.Router();
 
-router.get('/api/therapists', (req, res) => {
+router.get('/therapists', (req, res) => {
   res.json({ mssg: 'GET  list of all therapists' });
 });
 
-router.get('/api/therapists:id', (req, res) => {
+router.get('/therapists:id', (req, res) => {
   res.json({ mssg: 'GET a specific therapist by ID' });
 });
 
-router.post('/api/therapists', (req, res) => {
+router.post('/therapists', (req, res) => {
   res.json({ mssg: 'Create a new therapist' });
 });
 
-router.delete('/api/therapi=sts/:id', (req, res) => {
+router.delete('/therapi=sts/:id', (req, res) => {
   res.json({ mssg: 'Delete an existing therapist by ID' });
 });
 
-router.patch('/api/therapists/:id', (req, res) => {
-  res.json({ mssg: '/api/therapists/:id' });
+router.patch('/therapists/:id', (req, res) => {
+  res.json({ mssg: '/therapists/:id' });
 });
 
 // exports router
