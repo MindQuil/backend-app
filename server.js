@@ -13,8 +13,8 @@ const app = express();
 app.use(express.json());
 
 // middlewares
-app.use('/users', userRoutes);
-app.use('/therapists', therapistRoutes);
+app.use('/', userRoutes);
+app.use('/', therapistRoutes);
 
 // connect to db
 connectDB();
